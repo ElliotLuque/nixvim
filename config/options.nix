@@ -36,10 +36,9 @@
 
       mouse = "a";
       spell = false;
-      
+
       updatetime = 250;
       timeoutlen = 300;
-
 
       fileformats = "unix";
       undofile = true;

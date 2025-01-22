@@ -5,10 +5,10 @@ _: {
       options = {
         globalstatus = true;
         theme = "catppuccin";
-	section_separators = {
-	  left = "";
-	  right = "";
-	};
+        section_separators = {
+          left = "";
+          right = "";
+        };
       };
       sections = {
         lualine_a = [
@@ -19,30 +19,30 @@ _: {
         ];
         lualine_b = [
           {
-	    __unkeyed-1 = "filename";
-	    file_status = true;
-	    padding = {
-	      left = 2;
-	      right = 2;
-	    };
-	  }
+            __unkeyed-1 = "filename";
+            file_status = true;
+            padding = {
+              left = 2;
+              right = 2;
+            };
+          }
         ];
         lualine_c = [
           {
-	    __unkeyed-1 = "branch";
-	    icon = "󰘬";
-	    separator = "";
-	  }
-	  {
-	    __unkeyed-1 = "diff";
-	    separator = "";
-	  }
+            __unkeyed-1 = "branch";
+            icon = "󰘬";
+            separator = "";
+          }
+          {
+            __unkeyed-1 = "diff";
+            separator = "";
+          }
         ];
         lualine_x = [
           {
             __unkeyed-1 = "diagnostics";
             sources = [ "nvim_lsp" ];
-	    separator = "";
+            separator = "";
             symbols = {
               error = " ";
               warn = " ";
