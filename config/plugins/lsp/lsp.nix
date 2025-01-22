@@ -10,6 +10,9 @@
       enable = true;
       inlayHints = true;
       servers = {
+				nixd = {
+					enable = true;
+				};
         html = {
           enable = true;
         };
