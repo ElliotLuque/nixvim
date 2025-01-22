@@ -13,6 +13,9 @@
 				nixd = {
 					enable = true;
 				};
+				hyprls = {
+					enable = true;
+				};
         html = {
           enable = true;
         };
