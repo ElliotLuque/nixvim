@@ -20,6 +20,7 @@
 
     ./plugins/lsp/conform.nix 
     # ./plugins/lsp/fidget.nix 
+    ./plugins/lsp/none-ls.nix 
     ./plugins/lsp/lsp.nix 
     
     ./plugins/snippets/luasnip.nix 
