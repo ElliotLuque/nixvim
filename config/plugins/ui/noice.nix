@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       notify = {
-        enabled = false;
+        enabled = true;
         view = "notify";
       };
       messages = {
