@@ -10,6 +10,19 @@
         vim.fn.sign_define("diagnosticsigninfo", { text = " ", texthl = "diagnosticinfo", linehl = "", numhl = "" })
       '';
 
+    diagnostics = {
+      virtual_text = {
+        prefix = "●";
+      };
+      signs = true;
+      update_in_insert = true;
+      underline = true;
+      severity_sort = true;
+      float = {
+        border = "rounded";
+      };
+    };
+
     extraPlugins = with pkgs.vimPlugins; [
       cellular-automaton-nvim
     ];
@@ -21,6 +34,7 @@
     opts = {
       number = true;
       relativenumber = true;
+      signcolumn = "yes:2";
       clipboard = "unnamedplus";
 
       shiftwidth = 2;
