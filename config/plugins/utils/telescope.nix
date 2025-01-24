@@ -20,11 +20,11 @@
       };
     };
     keymaps = {
-      "<Esc>" = {
+      "<esc>" = {
         action = "close";
-	options = {
-	  desc = "Close telescope";
-	};
+        options = {
+          desc = "Close telescope";
+        };
       };
       "<leader><space>" = {
         action = "find_files";

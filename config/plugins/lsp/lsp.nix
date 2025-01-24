@@ -10,20 +10,13 @@
       enable = true;
       inlayHints = true;
       servers = {
-				nixd = {
-					enable = true;
-					settings.formatting.command = [ "nixpkgs-fmt" ];
-				};
-				hyprls = {
-					enable = true;
-				};
+        hyprls = {
+          enable = true;
+        };
         html = {
           enable = true;
         };
         lua_ls = {
-          enable = true;
-        };
-        nil_ls = {
           enable = true;
         };
         ts_ls = {
