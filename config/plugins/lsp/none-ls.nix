@@ -8,7 +8,6 @@
     };
     sources = {
       code_actions = {
-        # gitsigns.enable = true;
         statix.enable = true;
       };
       diagnostics = {
@@ -41,7 +40,6 @@
         yamlfmt = {
           enable = true;
         };
-        hclfmt.enable = true;
       };
     };
   };
