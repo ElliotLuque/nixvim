@@ -20,9 +20,9 @@
         };
         formatting = {
           fields = [
-            "kind"
             "abbr"
             "menu"
+            "kind"
           ];
         };
         sources = [
@@ -47,23 +47,24 @@
 
         window = {
           completion = {
-            border = "single";
+            border = "rounded";
           };
           documentation = {
-            border = "single";
+            border = "rounded";
           };
         };
 
         mapping = {
-          "<C-Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-          "<C-j>" = "cmp.mapping.select_next_item()";
-          "<C-k>" = "cmp.mapping.select_prev_item()";
-          "<C-e>" = "cmp.mapping.abort()";
+          "<C-Tab>" =
+            "cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i', 's'})";
+          "<S-Tab>" =
+            "cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i', 's'})";
+          "<down>" = "cmp.mapping.select_next_item()";
+          "<up>" = "cmp.mapping.select_prev_item()";
           "<C-b>" = "cmp.mapping.scroll_docs(-4)";
           "<C-f>" = "cmp.mapping.scroll_docs(4)";
           "<C-Space>" = "cmp.mapping.complete()";
-          "<C-CR>" = "cmp.mapping.confirm({ select = true })";
-          "<S-CR>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })";
+          "<CR>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })";
         };
       };
     };
