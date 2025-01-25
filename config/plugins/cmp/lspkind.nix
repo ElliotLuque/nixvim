@@ -5,7 +5,8 @@
       Copilot = " ";
     };
     extraOptions = {
-      maxwidth = 50;
+      mode = "symbol_text";
+      maxwidth = 20;
       ellipsis_char = "...";
     };
   };
