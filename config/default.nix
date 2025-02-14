@@ -14,6 +14,7 @@
     ./plugins/editor/indent-blankline.nix
     ./plugins/editor/todo-comments.nix
     ./plugins/editor/treesitter.nix
+    ./plugins/editor/nvim-colorizer.nix
 
     ./plugins/git/gitsigns.nix
     ./plugins/git/lazygit.nix
