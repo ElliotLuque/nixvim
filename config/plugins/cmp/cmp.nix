@@ -10,6 +10,9 @@
         experimental = {
           ghost_text = true;
         };
+        completion = {
+          completeopt = "menu,menuone";
+        };
         performance = {
           debounce = 60;
           fetchingTimeout = 200;
