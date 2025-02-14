@@ -11,9 +11,6 @@
       '';
 
     diagnostics = {
-      virtual_text = {
-        prefix = "●";
-      };
       signs = true;
       update_in_insert = true;
       underline = true;

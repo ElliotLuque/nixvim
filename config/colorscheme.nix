@@ -45,13 +45,13 @@
             inlay_hints = {
               background = true;
             };
-            virtual_text = {
-              errors = [ "italic" ];
-              hints = [ "italic" ];
-              information = [ "italic" ];
-              warnings = [ "italic" ];
-              ok = [ "italic" ];
-            };
+            # virtual_text = {
+            #   errors = [ "italic" ];
+            #   hints = [ "italic" ];
+            #   information = [ "italic" ];
+            #   warnings = [ "italic" ];
+            #   ok = [ "italic" ];
+            # };
             underlines = {
               errors = [ "underline" ];
               hints = [ "underline" ];
