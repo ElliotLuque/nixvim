@@ -4,10 +4,16 @@
     extraConfigLuaPre =
       # lua
       ''
-        vim.fn.sign_define("diagnosticsignerror", { text = " ", texthl = "diagnosticerror", linehl = "", numhl = "" })
-        vim.fn.sign_define("diagnosticsignwarn", { text = " ", texthl = "diagnosticwarn", linehl = "", numhl = "" })
-        vim.fn.sign_define("diagnosticsignhint", { text = "", texthl = "diagnostichint", linehl = "", numhl = "" })
-        vim.fn.sign_define("diagnosticsigninfo", { text = " ", texthl = "diagnosticinfo", linehl = "", numhl = "" })
+        local signs = {
+          { name = 'DiagnosticSignError', text = ' ' },
+          { name = 'DiagnosticSignWarn', text = ' ' },
+          { name = 'DiagnosticSignInfo', text = ' ' },
+          { name = 'DiagnosticSignHint', text = ' ' },
+        }
+
+        for _, sign in ipairs(signs) do
+          vim.fn.sign_define(sign.name, { text = sign.text, texthl = sign.name, numhl = sign.name })
+        end
       '';
 
     diagnostics = {
