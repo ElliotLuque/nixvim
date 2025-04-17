@@ -10,6 +10,12 @@
       enable = true;
       inlayHints = true;
       servers = {
+        omnisharp = {
+          enable = true;
+        };
+        csharp_ls = {
+          enable = true;
+        };
         hyprls = {
           enable = true;
         };
@@ -23,9 +29,6 @@
           enable = true;
         };
         marksman = {
-          enable = true;
-        };
-        pyright = {
           enable = true;
         };
         gopls = {
