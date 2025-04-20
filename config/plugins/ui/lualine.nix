@@ -6,7 +6,7 @@ _: {
         globalstatus = true;
         theme = "catppuccin";
         section_separators = {
-          left = "";
+          left = "";
           right = "";
         };
       };
@@ -15,6 +15,9 @@ _: {
           {
             __unkeyed-1 = "mode";
             icon = "";
+            separator = {
+              left = "";
+            };
           }
         ];
         lualine_b = [
@@ -74,6 +77,9 @@ _: {
         lualine_z = [
           {
             __unkeyed-1 = "location";
+            separator = {
+              right = "";
+            };
           }
         ];
       };
