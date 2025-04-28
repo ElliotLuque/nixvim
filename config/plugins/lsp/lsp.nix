@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   plugins = {
     lsp-lines = {
@@ -12,6 +13,21 @@
       servers = {
         omnisharp = {
           enable = true;
+          cmd = [
+            "dotnet"
+            "${pkgs.omnisharp-roslyn}/lib/omnisharp-roslyn/OmniSharp.dll"
+          ];
+          settings = {
+            FormattingOptions = {
+              EnableEditorConfigSupport = true;
+              OrganizeImports = true;
+            };
+            RoslynExtensionsOptions = {
+              EnableAnalyzersSupport = true;
+              EnableImportCompletion = true;
+              AnalyzeOpenDocumentsOnly = false;
+            };
+          };
         };
         hyprls = {
           enable = true;
