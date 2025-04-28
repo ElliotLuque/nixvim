@@ -10,9 +10,6 @@
       enable = true;
       inlayHints = true;
       servers = {
-        omnisharp = {
-          enable = true;
-        };
         csharp_ls = {
           enable = true;
         };
