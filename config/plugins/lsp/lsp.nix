@@ -29,6 +29,9 @@
             };
           };
         };
+        astro = {
+          enable = true;
+        };
         hyprls = {
           enable = true;
         };

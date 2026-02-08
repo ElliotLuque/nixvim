@@ -15,6 +15,7 @@
     ./plugins/editor/todo-comments.nix
     ./plugins/editor/treesitter.nix
     ./plugins/editor/nvim-colorizer.nix
+    ./plugins/editor/copilot.nix
 
     ./plugins/git/gitsigns.nix
     ./plugins/git/lazygit.nix

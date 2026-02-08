@@ -16,7 +16,7 @@
         end
       '';
 
-    diagnostics = {
+    diagnostic.settings = {
       signs = true;
       update_in_insert = true;
       underline = true;
