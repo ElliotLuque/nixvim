@@ -31,6 +31,18 @@
         };
         astro = {
           enable = true;
+          package = pkgs.nodePackages."@astrojs/language-server";
+          cmd = [
+            "${pkgs.nodePackages."@astrojs/language-server"}/bin/astro-ls"
+            "--stdio"
+          ];
+          extraOptions = {
+            init_options = {
+              typescript = {
+                tsdk = "${pkgs.nodePackages.typescript}/lib/node_modules/typescript/lib";
+              };
+            };
+          };
         };
         hyprls = {
           enable = true;
