@@ -17,19 +17,19 @@
       '';
 
     extraConfigLuaPost = ''
-    --WSL + Docker
+    -- WSL + Docker
     if vim.fn.has("wsl") == 1 then
       vim.opt.clipboard = "unnamedplus"
   
       vim.g.clipboard = {
         name = "wsl-clipboard",
         copy = {
-          ["+"] = "clip.exe",
-          ["*"] = "clip.exe",
+          ["+"] = "wsl.exe clip.exe",
+          ["*"] = "wsl.exe clip.exe",
         },
         paste = {
-          ["+"] = "powershell.exe -c Get-Clipboard",
-          ["*"] = "powershell.exe -c Get-Clipboard",
+          ["+"] = "wsl.exe powershell.exe -c Get-Clipboard",
+          ["*"] = "wsl.exe powershell.exe -c Get-Clipboard",
         },
         cache_enabled = 0,
       }
