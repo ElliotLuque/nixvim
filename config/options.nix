@@ -17,6 +17,7 @@
       '';
 
     extraConfigLuaPost = ''
+    --WSL + Docker
     if vim.fn.has("wsl") == 1 then
       vim.opt.clipboard = "unnamedplus"
   
@@ -32,6 +33,9 @@
         },
         cache_enabled = 0,
       }
+    -- Linux
+    elseif vim.fn.has("unix") == 1 then
+      vim.opt.clipboard = "unnamedplus"
     end
   '';
 
