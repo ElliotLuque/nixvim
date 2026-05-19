@@ -11,7 +11,13 @@
         view = "mini";
       };
       lsp = {
+				hover = {
+					enabled = true;
+				};
         message = {
+          enabled = false;
+        };
+				signature = {
           enabled = false;
         };
         progress = {
@@ -19,6 +25,18 @@
           view = "mini";
         };
       };
+			views = {
+				hover = {
+					border = {
+						style = "rounded";
+					};
+				};
+				signature = {
+					border = {
+						style = "rounded";
+					};
+				};
+			};
       popupmenu = {
         enabled = true;
         backend = "nui";
