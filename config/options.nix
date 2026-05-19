@@ -21,7 +21,7 @@ extraConfigLua = lib.mkAfter ''
       local has_wl_copy = vim.fn.executable("wl-copy") == 1
       local osc52 = require('vim.ui.clipboard.osc52')
 
-      if has_wl_copy then
+      if has_wl_copy and vim.env.WAYLAND_DISPLAY ~= nil then
         vim.g.clipboard = {
           name = "wl-copy",
           copy = {
