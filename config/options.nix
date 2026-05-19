@@ -17,20 +17,23 @@
       '';
 
     extraConfigLuaPost = ''
-      if vim.fn.has("wsl") == 1 then
-        vim.g.clipboard = {
-          name = 'win32yank',
-          copy = {
-            ['+'] = '/host-bin/win32yank.exe -i --crlf',
-            ['*'] = '/host-bin/win32yank.exe -i --crlf',
-          },
-          paste = {
-            ['+'] = '/host-bin/win32yank.exe -o --lf',
-            ['*'] = '/host-bin/win32yank.exe -o --lf',
-          },
-        }
-     end
-   '';
+    if vim.fn.has("wsl") == 1 then
+      vim.opt.clipboard = "unnamedplus"
+  
+      vim.g.clipboard = {
+        name = "wsl-clipboard",
+        copy = {
+          ["+"] = "clip.exe",
+          ["*"] = "clip.exe",
+        },
+        paste = {
+          ["+"] = "powershell.exe -c Get-Clipboard",
+          ["*"] = "powershell.exe -c Get-Clipboard",
+        },
+        cache_enabled = 0,
+      }
+    end
+  '';
 
     diagnostic.settings = {
       signs = true;
