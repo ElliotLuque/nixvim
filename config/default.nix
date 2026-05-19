@@ -24,6 +24,8 @@
     # ./plugins/lsp/fidget.nix
     ./plugins/lsp/none-ls.nix
     ./plugins/lsp/lsp.nix
+    ./plugins/lsp/jdtls.nix
+    ./plugins/lsp/trouble.nix
 
     ./plugins/snippets/luasnip.nix
 
