@@ -16,28 +16,38 @@
         end
       '';
 
-    extraConfigLuaPost = ''
-    -- WSL + Docker
-    if vim.fn.has("wsl") == 1 then
-      vim.opt.clipboard = "unnamedplus"
-  
-      vim.g.clipboard = {
-        name = "wsl-clipboard",
-        copy = {
-          ["+"] = "wsl.exe clip.exe",
-          ["*"] = "wsl.exe clip.exe",
-        },
-        paste = {
-          ["+"] = "wsl.exe powershell.exe -c Get-Clipboard",
-          ["*"] = "wsl.exe powershell.exe -c Get-Clipboard",
-        },
-        cache_enabled = 0,
-      }
-    -- Linux
-    elseif vim.fn.has("unix") == 1 then
-      vim.opt.clipboard = "unnamedplus"
-    end
-  '';
+    
+extraConfigLua = lib.mkAfter ''
+      local has_wl_copy = vim.fn.executable("wl-copy") == 1
+      local osc52 = require('vim.ui.clipboard.osc52')
+
+      if has_wl_copy then
+        vim.g.clipboard = {
+          name = "wl-copy",
+          copy = {
+            ["+"] = "wl-copy --foreground --type text/plain",
+            ["*"] = "wl-copy --foreground --primary --type text/plain",
+          },
+          paste = {
+            ["+"] = "wl-paste --no-newline",
+            ["*"] = "wl-paste --no-newline --primary",
+          },
+        }
+
+      else
+        vim.g.clipboard = {
+          name = "osc52",
+          copy = {
+            ["+"] = osc52.copy("+"),
+            ["*"] = osc52.copy("*"),
+          },
+          paste = {
+            ["+"] = osc52.paste("+"),
+            ["*"] = osc52.paste("*"),
+          },
+        }
+      end
+    '';
 
     diagnostic.settings = {
       signs = true;
