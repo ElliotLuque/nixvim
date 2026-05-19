@@ -4,6 +4,10 @@
   # IMPORTANT: jdtls nixvim
   plugins.lsp.servers.jdtls.enable = false;
 
+  plugins.nvim-jdtls = {
+    enable = true;
+  };
+
   extraPackages = [
     pkgs.jdt-language-server
   ];
