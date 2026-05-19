@@ -1,36 +1,66 @@
-{ ... }:
+{ pkgs, ... }:
+
 {
-  plugins.jdtls = {
-    enable = true;
+  # IMPORTANT: jdtls nixvim
+  plugins.lsp.servers.jdtls.enable = false;
 
-    settings = {
-      java = {
-        format = {
-          enabled = true;
-        };
-        
-        completion = {
-          favoriteStaticMembers = [
-            "org.hamcrest.MatcherAssert.assertThat"
-            "org.hamcrest.Matchers.*"
-            "org.junit.Assert.*"
-            "java.util.Objects.requireNonNull"
-          ];
-        };
+  extraPackages = [
+    pkgs.jdt-language-server
+  ];
 
-        sources = {
-          organizeImports = {
-            starThreshold = 9999;
-            staticStarThreshold = 9999;
-          };
-        };
+  extraConfigLua = ''
+    local jdtls = require("jdtls")
 
-        codeGeneration = {
-          toString = {
-            template = "\${object.className}{\${member.name()}=\${member.value}, \${otherMembers}}";
-          };
-        };
-      };
-    };
-  };
+    local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
+    local root_dir = require("jdtls.setup").find_root(root_markers)
+
+    if root_dir == nil then
+      return
+    end
+
+    local workspace_dir = vim.fn.stdpath("data") .. "/jdtls-workspace/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
+
+    local config = {
+      cmd = {
+        "${pkgs.jdt-language-server}/bin/jdtls",
+        "-data",
+        workspace_dir,
+      },
+
+      root_dir = root_dir,
+
+      settings = {
+        java = {
+          configuration = {
+            updateBuildConfiguration = "interactive",
+          },
+          eclipse = {
+            downloadSources = true,
+          },
+          maven = {
+            downloadSources = true,
+          },
+          implementationsCodeLens = {
+            enabled = true,
+          },
+          referencesCodeLens = {
+            enabled = true,
+          },
+        },
+      },
+
+      capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    }
+
+    jdtls.start_or_attach(config)
+  '';
+
+ 
+  extraConfigLuaPost = ''
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "java",
+      callback = function()
+      end,
+    })
+  '';
 }
