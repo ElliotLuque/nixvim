@@ -63,10 +63,6 @@ extraConfigLua = lib.mkAfter ''
       cellular-automaton-nvim
     ];
 
-    clipboard = {
-      providers.wl-copy.enable = true;
-    };
-
     opts = {
       number = true;
       relativenumber = true;
