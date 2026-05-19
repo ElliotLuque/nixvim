@@ -62,9 +62,6 @@
         gopls = {
           enable = true;
         };
-        jdtls = {
-          enable = true;
-        };
         jsonls = {
           enable = true;
         };
