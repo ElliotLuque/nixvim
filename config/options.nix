@@ -41,13 +41,30 @@
               ["*"] = osc52.copy("*"),
             },
             paste = {
-                  ["+"] = function()
-                    return vim.fn.getreg('"', 1)
-                  end,
-                  ["*"] = function()
-                    return vim.fn.getreg('"', 1)
-                  end,
-            },
+              ["+"] = function()
+                local text = vim.fn.getreg('"')
+            
+                local lines = vim.split(text, "\n", { plain = true })
+            
+                if lines[#lines] == "" then
+                  table.remove(lines, #lines)
+                end
+            
+                return lines
+              end,
+            
+              ["*"] = function()
+                local text = vim.fn.getreg('"')
+            
+                local lines = vim.split(text, "\n", { plain = true })
+            
+                if lines[#lines] == "" then
+                  table.remove(lines, #lines)
+                end
+            
+                return lines
+              end,
+            }
           }
         end
 
