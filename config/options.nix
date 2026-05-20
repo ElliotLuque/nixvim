@@ -42,10 +42,10 @@
             },
             paste = {
                   ["+"] = function()
-                    return vim.fn.getreg('"')
+                    return vim.fn.getreg('"', 1)
                   end,
                   ["*"] = function()
-                    return vim.fn.getreg('"')
+                    return vim.fn.getreg('"', 1)
                   end,
             },
           }
