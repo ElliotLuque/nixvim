@@ -17,38 +17,46 @@
       '';
 
     extraConfigLua = lib.mkAfter ''
-            local has_wl_copy = vim.fn.executable("wl-copy") == 1
-            local osc52 = require('vim.ui.clipboard.osc52')
+                  local has_wl_copy = vim.fn.executable("wl-copy") == 1
+            			local osc52 = require('vim.ui.clipboard.osc52')
 
-            if has_wl_copy and vim.env.WAYLAND_DISPLAY ~= nil then
-              vim.g.clipboard = {
-                name = "wl-copy",
-                copy = {
-                  ["+"] = "wl-copy --foreground --type text/plain",
-                  ["*"] = "wl-copy --foreground --primary --type text/plain",
-                },
-                paste = {
-                  ["+"] = "wl-paste --no-newline",
-                  ["*"] = "wl-paste --no-newline --primary",
-                },
-              }
-            else
-              vim.g.clipboard = {
-                name = "osc52",
-                copy = {
-                  ["+"] = osc52.copy("+"),
-                  ["*"] = osc52.copy("*"),
-                },
-                paste = {
-                  ["+"] = function () 
-      							return { vim.fn.getreg('"') } 
-      						end,
-                  ["*"] = function () 
-      							return { vim.fn.getreg('"') } 
-      						end,
-                },
-              }
-            end
+            			if has_wl_copy and vim.env.WAYLAND_DISPLAY ~= nil then
+            				vim.g.clipboard = {
+            					name = "wl-copy",
+            					copy = {
+            						["+"] = "wl-copy --foreground --type text/plain",
+            						["*"] = "wl-copy --foreground --primary --type text/plain",
+            					},
+            					paste = {
+            						["+"] = "wl-paste --no-newline",
+            						["*"] = "wl-paste --no-newline --primary",
+            					},
+            				}
+            			else
+      							local function copy(reg)
+      								return function()
+      									local text = vim.fn.getreg(reg)
+      									local encoded = vim.fn.system("base64 | tr -d '\n'", text)
+      									vim.api.nvim_chan_send(vim.v.stderr, "\27]52;c;" .. encoded .. "\a")
+      								end
+      							end
+
+            				vim.g.clipboard = {
+            					name = "osc52",
+            					copy = {
+            						["+"] = copy("+"),
+            						["*"] = copy("*"),
+            					},
+            					paste = {
+            						["+"] = function () 
+            							return { vim.fn.getreg('"') } 
+            						end,
+            						["*"] = function () 
+            							return { vim.fn.getreg('"') } 
+            						end,
+            					},
+            				}
+            			end
     '';
 
     diagnostic.settings = {
