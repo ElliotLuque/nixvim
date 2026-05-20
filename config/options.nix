@@ -33,8 +33,18 @@
       					},
       				}
       			else
-      				vim.g.clipboard = require('vim.ui.clipboard.osc52')
-      			end
+            vim.g.clipboard = {
+              name = "wsl-bridge",
+              copy = {
+                ["+"] = "/host-bin/wsl-copy",
+                ["*"] = "/host-bin/wsl-copy",
+              },
+              paste = {
+                ["+"] = "powershell.exe -c Get-Clipboard",
+                ["*"] = "powershell.exe -c Get-Clipboard",
+              },
+            }
+      		end
     '';
 
     diagnostic.settings = {
