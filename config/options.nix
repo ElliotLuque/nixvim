@@ -33,17 +33,31 @@
       					},
       				}
       			else
-            vim.g.clipboard = {
-              name = "wsl-bridge",
-              copy = {
-                ["+"] = "/host-bin/wsl-copy",
-                ["*"] = "/host-bin/wsl-copy",
-              },
-              paste = {
-                ["+"] = "powershell.exe -c Get-Clipboard",
-                ["*"] = "powershell.exe -c Get-Clipboard",
-              },
-            }
+            
+                vim.g.clipboard = {
+                    name = "wsl-bridge",
+                
+                    copy = {
+                      ["+"] = function(lines, _)
+                        local text = table.concat(lines, "\n")
+                        vim.fn.system({"bash", "-lc", "wsl-copy"}, text)
+                      end,
+                      ["*"] = function(lines, _)
+                        local text = table.concat(lines, "\n")
+                        vim.fn.system({"bash", "-lc", "wsl-copy"}, text)
+                      end,
+                    },
+                
+                    paste = {
+                      ["+"] = function()
+                        return { vim.fn.getreg('"') }
+                      end,
+                      ["*"] = function()
+                        return { vim.fn.getreg('"') }
+                      end,
+                    },
+                  }
+
       		end
     '';
 
