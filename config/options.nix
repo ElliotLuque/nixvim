@@ -36,7 +36,7 @@
       							local function copy(reg)
       								return function()
       									local text = vim.fn.getreg(reg)
-      									local encoded = vim.fn.system("base64 | tr -d '\n'", text)
+      									local encoded = vim.base64.encode(text)
       									vim.api.nvim_chan_send(vim.v.stderr, "\27]52;c;" .. encoded .. "\a")
       								end
       							end
