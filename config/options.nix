@@ -16,8 +16,7 @@
         end
       '';
 
-    
-extraConfigLua = lib.mkAfter ''
+    extraConfigLua = lib.mkAfter ''
       local has_wl_copy = vim.fn.executable("wl-copy") == 1
       local osc52 = require('vim.ui.clipboard.osc52')
 
@@ -42,8 +41,8 @@ extraConfigLua = lib.mkAfter ''
             ["*"] = osc52.copy("*"),
           },
           paste = {
-            ["+"] = osc52.paste("+"),
-            ["*"] = osc52.paste("*"),
+            ["+"] = function () return {} end,
+            ["*"] = function () return {} end,
           },
         }
       end
