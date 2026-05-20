@@ -40,30 +40,14 @@
               ["+"] = osc52.copy("+"),
               ["*"] = osc52.copy("*"),
             },
-        
             paste = {
-              ["+"] = function()
-                local content = vim.fn.getreg('"', 1, true)
-                local regtype = vim.fn.getregtype('"')
-            
-                if regtype == "V" then
-                  return content, "v"
-                end
-            
-                return content
-              end,
-            
-              ["*"] = function()
-                local content = vim.fn.getreg('"', 1, true)
-                local regtype = vim.fn.getregtype('"')
-            
-                if regtype == "V" then
-                  return content, "v"
-                end
-            
-                return content
-              end,
-            }
+                  ["+"] = function()
+                    return vim.fn.getreg('"')
+                  end,
+                  ["*"] = function()
+                    return vim.fn.getreg('"')
+                  end,
+            },
           }
         end
 
