@@ -33,34 +33,23 @@
             },
           }
         else
-          local function copy_crlf(reg)
-              return function()
-                local text = table.concat(vim.fn.getreg(reg, 1, true), "\n")
-          
-                -- convert LF → CRLF
-                text = text:gsub("\n", "\r\n")
-          
-                osc52.copy(reg)(vim.split(text, "\n"), reg)
-              end
-            end
-          
-            vim.g.clipboard = {
-              name = "osc52",
-          
-              copy = {
-                ["+"] = copy_crlf("+"),
-                ["*"] = copy_crlf("*"),
-              },
-          
-              paste = {
-                ["+"] = function()
-                  return vim.fn.getreg('"', 1, true)
-                end,
-                ["*"] = function()
-                  return vim.fn.getreg('"', 1, true)
-                end,
-              },
-            }
+          vim.g.clipboard = {
+            name = "osc52",
+        
+            copy = {
+              ["+"] = osc52.copy("+"),
+              ["*"] = osc52.copy("*"),
+            },
+        
+            paste = {
+              ["+"] = function()
+                return vim.fn.getreg('"', 1, true)
+              end,
+              ["*"] = function()
+                return vim.fn.getreg('"', 1, true)
+              end,
+            },
+          }
         end
 
       vim.opt.clipboard = "unnamedplus"
