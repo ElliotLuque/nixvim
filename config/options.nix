@@ -17,24 +17,26 @@
       '';
 
     extraConfigLua = lib.mkAfter ''
-            local has_wl_copy = vim.fn.executable("wl-copy") == 1
-      			local osc52 = require('vim.ui.clipboard.osc52')
+        local has_wl_copy = vim.fn.executable("wl-copy") == 1
+        local osc52 = require('vim.ui.clipboard.osc52')
 
-      			if has_wl_copy and vim.env.WAYLAND_DISPLAY ~= nil then
-      				vim.g.clipboard = {
-      					name = "wl-copy",
-      					copy = {
-      						["+"] = "wl-copy --foreground --type text/plain",
-      						["*"] = "wl-copy --foreground --primary --type text/plain",
-      					},
-      					paste = {
-      						["+"] = "wl-paste --no-newline",
-      						["*"] = "wl-paste --no-newline --primary",
-      					},
-      				}
-      			else
-              vim.g.clipboard = require("vim.ui.clipboard.osc52")
-      		end
+        if has_wl_copy and vim.env.WAYLAND_DISPLAY ~= nil then
+          vim.g.clipboard = {
+            name = "wl-copy",
+            copy = {
+              ["+"] = "wl-copy --foreground --type text/plain",
+              ["*"] = "wl-copy --foreground --primary --type text/plain",
+            },
+            paste = {
+              ["+"] = "wl-paste --no-newline",
+              ["*"] = "wl-paste --no-newline --primary",
+            },
+          }
+        else
+          vim.g.clipboard = require("vim.ui.clipboard.osc52")
+      end
+
+      vim.opt.clipboard = "unnamedplus"
     '';
 
     diagnostic.settings = {
@@ -55,7 +57,6 @@
       number = true;
       relativenumber = true;
       signcolumn = "yes:2";
-      clipboard = "unnamedplus";
 
       shiftwidth = 2;
       tabstop = 2;
