@@ -44,11 +44,7 @@
               ["+"] = function()
                 local text = vim.fn.getreg('"')
             
-                local lines = vim.split(text, "\n", { plain = true })
-            
-                if lines[#lines] == "" then
-                  table.remove(lines, #lines)
-                end
+                local lines = vim.split(text, "\n", { plain = true, trimempty = false })
             
                 return lines
               end,
@@ -56,11 +52,7 @@
               ["*"] = function()
                 local text = vim.fn.getreg('"')
             
-                local lines = vim.split(text, "\n", { plain = true })
-            
-                if lines[#lines] == "" then
-                  table.remove(lines, #lines)
-                end
+                local lines = vim.split(text, "\n", { plain = true, trimempty = false })
             
                 return lines
               end,
