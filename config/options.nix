@@ -33,8 +33,24 @@
             },
           }
         else
-          vim.g.clipboard = require("vim.ui.clipboard.osc52")
-      end
+          vim.g.clipboard = {
+            name = "osc52",
+        
+            copy = {
+              ["+"] = osc52.copy("+"),
+              ["*"] = osc52.copy("*"),
+            },
+        
+            paste = {
+              ["+"] = function()
+                return vim.fn.getreg('"', 1, true)
+              end,
+              ["*"] = function()
+                return vim.fn.getreg('"', 1, true)
+              end,
+            },
+          }
+        end
 
       vim.opt.clipboard = "unnamedplus"
     '';
