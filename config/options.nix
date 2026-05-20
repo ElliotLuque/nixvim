@@ -33,31 +33,7 @@
       					},
       				}
       			else
-            
-                vim.g.clipboard = {
-                    name = "wsl-bridge",
-                
-                    copy = {
-                      ["+"] = function(lines, _)
-                        local text = table.concat(lines, "\n")
-                        vim.fn.system({"bash", "-lc", "wsl-copy"}, text)
-                      end,
-                      ["*"] = function(lines, _)
-                        local text = table.concat(lines, "\n")
-                        vim.fn.system({"bash", "-lc", "wsl-copy"}, text)
-                      end,
-                    },
-                
-                    paste = {
-                      ["+"] = function()
-                        return { vim.fn.getreg('"') }
-                      end,
-                      ["*"] = function()
-                        return { vim.fn.getreg('"') }
-                      end,
-                    },
-                  }
-
+              vim.g.clipboard = require("vim.ui.clipboard.osc52")
       		end
     '';
 
