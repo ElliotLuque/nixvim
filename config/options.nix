@@ -45,14 +45,25 @@
               ["+"] = function()
                 local content = vim.fn.getreg('"', 1, true)
                 local regtype = vim.fn.getregtype('"')
-                return content, regtype
+            
+                if regtype == "V" then
+                  return content, "V"
+                end
+            
+                return content
               end,
+            
               ["*"] = function()
                 local content = vim.fn.getreg('"', 1, true)
                 local regtype = vim.fn.getregtype('"')
-                return content, regtype
+            
+                if regtype == "V" then
+                  return content, "V"
+                end
+            
+                return content
               end,
-            },
+            }
           }
         end
 
