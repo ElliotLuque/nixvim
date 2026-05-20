@@ -43,10 +43,14 @@
         
             paste = {
               ["+"] = function()
-                return vim.fn.getreg('"', 1, true)
+                local content = vim.fn.getreg('"', 1, true)
+                local regtype = vim.fn.getregtype('"')
+                return content, regtype
               end,
               ["*"] = function()
-                return vim.fn.getreg('"', 1, true)
+                local content = vim.fn.getreg('"', 1, true)
+                local regtype = vim.fn.getregtype('"')
+                return content, regtype
               end,
             },
           }
