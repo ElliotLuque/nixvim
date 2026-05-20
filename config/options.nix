@@ -47,7 +47,7 @@
                 local regtype = vim.fn.getregtype('"')
             
                 if regtype == "V" then
-                  return content, "V"
+                  return content, "v"
                 end
             
                 return content
@@ -58,7 +58,7 @@
                 local regtype = vim.fn.getregtype('"')
             
                 if regtype == "V" then
-                  return content, "V"
+                  return content, "v"
                 end
             
                 return content
