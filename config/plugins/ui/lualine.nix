@@ -4,7 +4,7 @@ _: {
     settings = {
       options = {
         globalstatus = true;
-        theme = "catppuccin";
+        theme = "living-code";
         section_separators = {
           left = "";
           right = "";

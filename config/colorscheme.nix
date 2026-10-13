@@ -1,66 +1,20 @@
 {
-  colorschemes = {
-    catppuccin = {
-      enable = true;
-      settings = {
-        background = {
-          dark = "mocha";
-        };
-        custom_highlights = ''
-          function(highlights)
-            return {
-            CursorLineNr = { fg = highlights.peach, style = {} },
-            NavicText = { fg = highlights.text },
-            }
-          end
-        '';
-        flavour = "mocha"; # "latte", "mocha", "frappe", "macchiato" or raw lua code
-        no_bold = false;
-        no_italic = false;
-        no_underline = false;
-        transparent_background = true;
-        integrations = {
-          cmp = true;
-          notify = true;
-          gitsigns = true;
-          neotree = true;
-          which_key = true;
-          illuminate = {
-            enabled = true;
-            lsp = true;
-          };
-          navic = {
-            enabled = true;
-            custom_bg = "NONE";
-          };
-          treesitter = true;
-          telescope.enabled = true;
-          indent_blankline.enabled = true;
-          mini = {
-            enabled = true;
-            indentscope_color = "rosewater";
-          };
-          native_lsp = {
-            enabled = true;
-            inlay_hints = {
-              background = true;
-            };
-            # virtual_text = {
-            #   errors = [ "italic" ];
-            #   hints = [ "italic" ];
-            #   information = [ "italic" ];
-            #   warnings = [ "italic" ];
-            #   ok = [ "italic" ];
-            # };
-            underlines = {
-              errors = [ "underline" ];
-              hints = [ "underline" ];
-              information = [ "underline" ];
-              warnings = [ "underline" ];
-            };
-          };
-        };
-      };
+  imports = [ ./colorschemes/living-code.nix ];
+
+  colorschemes.living-code = {
+    enable = true;
+    settings = {
+      flavor = "night";
+      transparent = true;
+      italic_comments = true;
+      on_highlights.__raw = ''
+        function(highlights, palette)
+          highlights.CursorLineNr = { fg = palette.colors.copper }
+          highlights.NavicText = { fg = palette.colors.text }
+        end
+      '';
     };
   };
+
+  opts.background = "dark";
 }
