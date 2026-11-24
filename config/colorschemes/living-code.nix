@@ -3,19 +3,19 @@ lib.nixvim.plugins.mkNeovimPlugin {
   name = "living-code";
   isColorscheme = true;
   maintainers = [ ];
-  url = "https://github.com/ElliotLuque/living-code";
+  url = "https://github.com/living-code-theme/nvim";
 
   # Living Code is not packaged in Nixpkgs yet.
   package = lib.mkPackageOption pkgs "living-code" { default = null; } // {
     default =
       pkgs.vimPlugins.living-code or (pkgs.vimUtils.buildVimPlugin {
         pname = "living-code";
-        version = "unstable-777900b";
+        version = "unstable-cee6e73";
         src = pkgs.fetchFromGitHub {
-          owner = "ElliotLuque";
-          repo = "living-code";
-          rev = "777900b42cd7d5d3831c6929322ce304b0a21e88";
-          hash = "sha256-0RdvxdO0uRx/3ZkJigxq+TWix+0lMgbvHveSnVGAHOU=";
+          owner = "living-code-theme";
+          repo = "nvim";
+          rev = "cee6e734c83a03ddaa9cb420b120436301f15458";
+          hash = "sha256-ll5l1LRPXq/l8BQ10yqH1Sn0MMsu8JqlQQOPtGlLItc=";
         };
       });
     defaultText = lib.literalExpression ''
